@@ -66,4 +66,4 @@ Streamlit
 
 ## 6. Data Process
 
-![Data Process](docs/Data.png)
+![Data Process](docs/Data1.png)
