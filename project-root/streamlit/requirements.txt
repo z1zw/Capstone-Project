@@ -1,0 +1,5 @@
+streamlit==1.37.1
+pymongo==4.8.0
+neo4j==5.23.1
+polars
+plotly

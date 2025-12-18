@@ -1,0 +1,16 @@
+# Data
+*.feather
+*.parquet
+*.csv
+/data/
+server/app/ingest/data/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+server/.venv/
+
+# OS
+.DS_Store
+Thumbs.db

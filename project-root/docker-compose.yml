@@ -1,0 +1,80 @@
+services:
+
+  mongo-primary:
+    image: mongo:6.0
+    container_name: mongo-primary
+    ports:
+      - "27017:27017"
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo_primary_data:/data/db
+    networks:
+      - neuro_net
+
+  mongo-secondary:
+    image: mongo:6.0
+    container_name: mongo-secondary
+    ports:
+      - "27018:27017"
+    command: ["mongod", "--replSet", "rs0", "--bind_ip_all"]
+    volumes:
+      - mongo_secondary_data:/data/db
+    networks:
+      - neuro_net
+
+  neo4j:
+    image: neo4j:5.15
+    container_name: neo4j
+    hostname: neo4j
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+    environment:
+      NEO4J_AUTH: neo4j/password
+
+      NEO4J_dbms_connector_bolt_listen__address: 0.0.0.0:7687
+      NEO4J_dbms_connector_bolt_advertised__address: neo4j:7687
+      NEO4J_dbms_connector_http_listen__address: 0.0.0.0:7474
+
+      NEO4J_dbms_memory_heap_initial__size: 512m
+      NEO4J_dbms_memory_heap_max__size: 512m
+      NEO4J_dbms_memory_pagecache_size: 256m
+
+    volumes:
+      - neo4j_data:/data
+    networks:
+      - neuro_net
+
+
+  streamlit:
+    build: ./streamlit
+    container_name: streamlit
+    ports:
+      - "8501:8501"
+    depends_on:
+      - mongo-primary
+      - neo4j
+    networks:
+      - neuro_net
+
+  backend:
+    image: python:3.11-slim
+    container_name: backend
+    working_dir: /app
+    volumes:
+      - C:/Users/16320/Desktop/Experiments/server:/app
+      - C:/Users/16320/Desktop/Experiments/server/app/ingest/data:/data
+    command: tail -f /dev/null
+    depends_on:
+      - mongo-primary
+    networks:
+      - neuro_net
+
+volumes:
+  mongo_primary_data:
+  mongo_secondary_data:
+  neo4j_data:
+
+networks:
+  neuro_net:
+    driver: bridge

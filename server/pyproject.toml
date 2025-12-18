@@ -1,0 +1,27 @@
+[project]
+name = "connectome-backend"
+version = "0.1.0"
+dependencies = [
+    "pandas",
+    "pyarrow",
+    "pymongo",
+    "polars",
+    "plotly",
+    "pydantic",
+    "pytest",
+    "mypy",
+]
+
+
+[tool.uv]
+managed = true
+
+
+
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+strict = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
