@@ -31,7 +31,7 @@ Distributed Big Data Systems Capstone Project
 
 ## 3. System Architecture
 
-![Architecture](docs/architecture.png)
+![Architecture](architecture.png)
 
 **Components**
 - MongoDB Replica Set (Raw / Clean / Gold)
@@ -59,11 +59,9 @@ Streamlit
 
 ```
 ## 5. Pytest 
-![ Pytest ](docs/Pytest.png)
-
-
+![ Pytest ](Pytest.png)
 
 
 ## 6. Data Process
 
-![Data Process](docs/Data1.png)
+![Data Process](Data1.png)
