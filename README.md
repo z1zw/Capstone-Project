@@ -2,6 +2,14 @@
 Distributed Big Data Systems Capstone Project
 
 ---
+## Some Operation Screenshot
+![1](1.png)
+![2](2.png)
+![3](3.png)
+![4](4.png)
+![6](6.png)
+![7](7.png)
+
 
 ## 1. Distributed Big Data Platform
 
@@ -65,3 +73,5 @@ Streamlit
 ## 6. Data Process
 
 ![Data Process](Data1.png)
+
+
